@@ -6,6 +6,7 @@ import { ProjectCard } from "@/components/project-card"
 import { SkillBadge } from "@/components/skill-badge"
 import { ContactForm } from "@/components/contact-form"
 import { ExperienceCard } from "@/components/experience-card"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -215,7 +216,13 @@ export default function Home() {
               </div>
             </div>
             <div className="relative aspect-square overflow-hidden rounded-xl">
-              <img src="/images/profile-photo.png" alt="Ramez Atassi portrait" className="object-cover w-full h-full" />
+              <Image
+                src="/images/profile-photo.png"
+                alt="Ramez Atassi portrait"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
         </section>

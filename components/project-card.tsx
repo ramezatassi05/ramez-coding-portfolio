@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -17,17 +18,21 @@ export function ProjectCard({ title, description, tags, image, link }: ProjectCa
     <Card className="overflow-hidden group transition-all duration-300 hover:shadow-lg">
       <div className="relative overflow-hidden">
         <div className="w-full h-48 flex items-center justify-center bg-white">
-          <img
-            src={image || "/placeholder.svg"}
-            alt={title}
-            className={`transition-transform duration-500 group-hover:scale-105 ${
-              image.includes("credit-card-fraud") ||
-              image.includes("spam-email-detector") ||
-              image.includes("barbershop-booking")
-                ? "h-40 w-auto object-contain"
-                : "w-full h-full object-cover"
-            }`}
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={image || "/placeholder.svg"}
+              alt={title}
+              fill
+              className={`transition-transform duration-500 group-hover:scale-105 ${
+                image.includes("credit-card-fraud") ||
+                image.includes("spam-email-detector") ||
+                image.includes("barbershop-booking")
+                  ? "object-contain"
+                  : "object-cover"
+              }`}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
           <Link href={link} className="text-primary hover:underline flex items-center gap-1">
