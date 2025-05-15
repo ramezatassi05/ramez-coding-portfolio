@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react"
 
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ImageDebug } from "./image-debug"
 
 interface ProjectCardProps {
   title: string
@@ -14,23 +15,32 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, tags, image, link }: ProjectCardProps) {
+  // Ensure image path is lowercase to avoid case sensitivity issues
+  const imagePath = image.toLowerCase()
+
   return (
     <Card className="overflow-hidden group transition-all duration-300 hover:shadow-lg">
       <div className="relative overflow-hidden">
         <div className="w-full h-48 flex items-center justify-center bg-white">
-          <div className="relative w-full h-full">
+          {/* Use a div with background image as fallback strategy */}
+          <div
+            className="w-full h-full bg-center bg-no-repeat bg-contain"
+            style={{ backgroundImage: `url(${imagePath})` }}
+          >
+            {/* Add Next.js Image as primary strategy */}
             <Image
-              src={image || "/placeholder.svg"}
+              src={imagePath || "/placeholder.svg"}
               alt={title}
               fill
               className={`transition-transform duration-500 group-hover:scale-105 ${
-                image.includes("credit-card-fraud") ||
-                image.includes("spam-email-detector") ||
-                image.includes("barbershop-booking")
+                imagePath.includes("credit-card-fraud") ||
+                imagePath.includes("spam-email-detector") ||
+                imagePath.includes("barbershop-booking")
                   ? "object-contain"
                   : "object-cover"
               }`}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
             />
           </div>
         </div>
@@ -46,7 +56,7 @@ export function ProjectCard({ title, description, tags, image, link }: ProjectCa
       <CardContent>
         <p className="text-muted-foreground">{description}</p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex-col items-start gap-4">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <Badge key={tag} variant="secondary">
@@ -54,6 +64,8 @@ export function ProjectCard({ title, description, tags, image, link }: ProjectCa
             </Badge>
           ))}
         </div>
+        {/* Add debug component in development */}
+        {process.env.NODE_ENV === "development" && <ImageDebug src={imagePath || "/placeholder.svg"} />}
       </CardFooter>
     </Card>
   )

@@ -216,13 +216,20 @@ export default function Home() {
               </div>
             </div>
             <div className="relative aspect-square overflow-hidden rounded-xl">
-              <Image
-                src="/images/profile-photo.png"
-                alt="Ramez Atassi portrait"
-                fill
-                className="object-cover"
-                priority
-              />
+              {/* Use a div with background image as fallback */}
+              <div
+                className="w-full h-full bg-center bg-no-repeat bg-cover"
+                style={{ backgroundImage: `url('/images/profile-photo.png')` }}
+              >
+                <Image
+                  src="/images/profile-photo.png"
+                  alt="Ramez Atassi portrait"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
             </div>
           </div>
         </section>
