@@ -112,6 +112,18 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 gap-6">
               <ExperienceCard
+                title="Software Developer Intern"
+                company="Ericsson"
+                location="Montreal, Quebec (On-Site)"
+                period="September 2025 - December 2025"
+                description={[
+                  "Engineered automated CI/CD verification workflows in Jenkins/Spinnaker, removing manual recovery steps and speeding up automatic steps, cutting pipeline runtime by approximately 15%.",
+                  "Developed a production-grade test traffic framework for the Service Exposure Engine (SEE) supporting 6M+ transactions/second across a geo-redundant architecture, enabling reliable, repeatable, and high-fidelity production-scale validation.",
+                  "Improved reliability and contributed to development of Kubernetes-based microservices by performing low-level Unix/Linux debugging and multi-service log correlation, collaborating with cross-functional teams to cut failure diagnosis and resolution time by 25%.",
+                ]}
+                skills={["Jenkins", "Spinnaker", "Kubernetes", "Unix/Linux", "CI/CD", "Microservices", "DevOps"]}
+              />
+              <ExperienceCard
                 title="Software Engineering Intern"
                 company="TripStack"
                 location="Toronto, Ontario (Remote)"
@@ -166,6 +178,10 @@ export default function Home() {
               <SkillBadge name="Git" level={90} />
               <SkillBadge name="Machine Learning" level={85} />
               <SkillBadge name="Data Analysis" level={90} />
+              <SkillBadge name="Kubernetes" level={75} />
+              <SkillBadge name="Jenkins" level={80} />
+              <SkillBadge name="DevOps" level={80} />
+              <SkillBadge name="CI/CD" level={85} />
             </div>
           </div>
         </section>
@@ -180,8 +196,8 @@ export default function Home() {
                 machine learning, and data analysis.
               </p>
               <p className="text-muted-foreground">
-                Through my internships at TripStack and Springs Global Consultancy, I've gained valuable experience in
-                developing backend systems, optimizing cloud infrastructure, and extracting insights from complex
+                Through my internships at Ericsson, TripStack, and Springs Global Consultancy, I've gained valuable experience in
+                developing backend systems, CI/CD pipelines, Kubernetes microservices, and extracting insights from complex
                 datasets.
               </p>
               <p className="text-muted-foreground">
